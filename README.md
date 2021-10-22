@@ -13,4 +13,3 @@ Self-hosted calendar (appointment book) for practical and learning purposes.
 * Practice Boot Strap;
 * Learn MarkDown
 
-teste

@@ -10,3 +10,5 @@ Self-hosted calendar (appointment book) for practical and learning purposes.
 * Practice XML file manipulation (specially XPath and XQuery);
 * Practice SQL;
 * Practice Git/GitHub;
+* Practice Boot Strap;
+* Learn MarkDown

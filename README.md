@@ -12,3 +12,5 @@ Self-hosted calendar (appointment book) api for practical and learning purposes.
 * Practice Git/GitHub;
 * Practice Boot Strap;
 * Learn MarkDown
+
+teste

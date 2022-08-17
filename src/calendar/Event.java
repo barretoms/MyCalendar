@@ -13,7 +13,8 @@ public class Event extends Entry {
         super(name);
         this.start = start;
         this.finish = finish;
-    }  
+    }
+      
     public void setStart(LocalDateTime start){
         this.start = start;
     }

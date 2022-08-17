@@ -13,8 +13,20 @@ public class Authentication {
 
     }
 
-    public static void validate(){
+    public void update(){
 
+    }
+
+    public static void validate(){
+        
+    }
+
+    public static String generateSatlt(){
+        String salt = new String();
+
+            // TODO Implemment function to generate random salt
+
+        return salt;
     }
 
     public static Connection getConnection() throws SQLException {

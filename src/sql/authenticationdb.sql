@@ -1,9 +1,9 @@
-create user 'login_agent'@'localhost' identified by 'password'; 
+-- create user 'login_agent'@'localhost' identified by 'password'; 
 
 create database authentication;
 
-grant all privileges on authentication.* to 'login_agent'@'%' identified by 'password';
-grant all privileges on authentication.* to 'login_agent'@localhost identified by 'password';
+-- grant all privileges on authentication.* to 'login_agent'@'%' identified by 'password';
+-- grant all privileges on authentication.* to 'login_agent'@localhost identified by 'password';
 
 use authentication;
 
@@ -19,8 +19,4 @@ create table attemp(
     user_id int not null,
     start datetime not null,
     foreign key (user_id) references user(id)
-);
-
-create table entry(
-
 );

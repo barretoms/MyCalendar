@@ -3,44 +3,25 @@ package login;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Random;
+import util.General;
 
 
 public class Authentication {
-
-    private String username;
-    private String password;
-
-    
-
-    public static void create(){
+ 
+    public static void createUser(){
 
     }
 
-    public void update(){
+    public void updateUser(){
 
     }
 
-    public static void validate(){
+    public static void validateCredentials(Credential credential){
         
     }
 
     public static String generateSalt(Integer length){
-
-        String salt = new String();
-
-            String lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
-            String upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            String numbers = "0123456789";
-
-            String characters = numbers + lowerCaseLetters + upperCaseLetters;
-
-            Random rand = new Random();
-
-            for(int i = 0; i < length; i++){
-                salt += characters.charAt(rand.nextInt(characters.length()));
-            }
-
+        String salt = General.getRandomAlphaNumericString(length);
         return salt;
     }
 

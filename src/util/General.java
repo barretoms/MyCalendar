@@ -51,8 +51,14 @@ public class General {
         return randString;
     }
 
+    public static String getSha256FromString (String text) {
+        String result = "Encripted String";
+        // TODO Function to encript a text to sha256
+        return result;
+    }
+
     public static void test(){
-        
+        System.out.println(getSha256FromString("Exemple test"));
     }
     
 }

@@ -9,12 +9,12 @@ use authentication;
 
 create table user(
     id int primary key auto_increment,
-    username varchar(12) not null,
+    username varchar(12) not null unique,
     salt varchar(20) not null,
     pass_hash varchar(64) not null
 );
 
-create table attemp(
+create table attempt(
     id int primary key auto_increment,
     user_id int not null,
     start datetime not null,

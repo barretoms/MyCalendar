@@ -1,14 +1,20 @@
 package login;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.io.*;
 import org.w3c.dom.*;
+
+import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
+
 import util.Xml;
+import java.util.HashMap;
 
 
 public class DbManager {
 
     private String filePath = "resources\\dbinfo.xml";
+    private HashMap<String, ManagedDb> mdbs = null;
 
     public DbManager(){
 
@@ -31,9 +37,22 @@ public class DbManager {
         return conn;
     }
 
-    public void connect(){
-
+    public Boolean connect(ManagedDb mdb){
+        Integer count = 0;
         // TODO implement function to handle connection error
+        try{
+            if(count<5){}
+            System.out.println("Attemp "+count+"...");
+            Connection conn = DriverManager.getConnection(mdb.connectorString(), mdb.getUsername(), mdb.getPassword());
+            
+            return false;
+        }
+        catch (Exception e){
+            count++;
+        }
+
+
+        return true;
     }
 
     public Boolean isCompliant(){
@@ -43,6 +62,8 @@ public class DbManager {
         return true;
     }
 
+
+
     public Boolean isValidEntry(){
 
         // TODO verifies if entry is in the config file
@@ -50,11 +71,12 @@ public class DbManager {
         return false;
     }
 
-    public Document loadDbInfo() throws Exception{
+    public Document getDocumentFromXml() throws Exception{
 
         File file = new File(filePath);
 
         if(!file.exists()){
+            if(!Xml.validateAgainsXsd(filePath, "resources\\dbinfo.xsd"))
             System.out.println("Creating file dbinfo.xml...");
             Document document = Xml.createBlankDocument();
             Element root = document.createElement("root");
@@ -71,6 +93,10 @@ public class DbManager {
 
     }
 
+    public void loadHashMap(Document document) {
+
+    }
+
     public void setFilePath(String filePath){
         this.filePath = filePath;
     }
@@ -78,13 +104,11 @@ public class DbManager {
     public static void test (){
         DbManager dm = new DbManager();
         try {
-            dm.loadDbInfo();
+            dm.getDocumentFromXml();
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
-
-        
+        } 
     }
 
 }

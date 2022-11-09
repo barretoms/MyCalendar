@@ -2,13 +2,13 @@
 <root>
   <database name="mysqlRoot">
 	<connector>jdbc:mysql</connector>
-	<address>//localhost:3306/</address>
+	<address>//localhost/</address>
 	<username>root</username>
 	<password></password>
   </database>
   <database name="mysqlRoot2">
 	<connector>jdbc:mysql</connector>
-	<address>//localhost:3306/</address>
+	<address>//localhost/</address>
 	<username>root</username>
 	<password></password>
   </database>  

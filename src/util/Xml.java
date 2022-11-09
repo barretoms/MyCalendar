@@ -8,8 +8,16 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+
 import java.io.*;
 import org.w3c.dom.*;
+import org.xml.sax.SAXException;
+
+import javax.xml.validation.SchemaFactory;
+import javax.xml.validation.Validator;
+import javax.xml.validation.Schema;
+import javax.xml.XMLConstants;
 
 
 public class Xml {
@@ -40,7 +48,7 @@ public class Xml {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document document = builder.newDocument();
-        
+
         return document;
 
     }
@@ -63,5 +71,30 @@ public class Xml {
             throw new RuntimeException("Error occurs when pretty-printing xml\n", e);
         }
     }
+
+    public static Boolean validateAgainsXsd(String xmlPath, String xsdPath) {
+        
+        
+        try {
+            SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema s = sf.newSchema(new File(xsdPath));
+            Validator validator = s.newValidator();
+            validator.validate(new StreamSource(new File(xmlPath)));
+            
+        } catch (SAXException e) {
+            System.out.println("Exception: "+e.getMessage());
+            return false;
+        } catch (IOException e1) {
+            System.out.println("SAX Exception: "+e1.getMessage());
+            return false;
+        }
+
+        return true;
+    }
     
+    public static Element getElementFromNode(Node node){
+        Element element = null;
+    if (node.getNodeType() == Node.ELEMENT_NODE) element = (Element) node;
+        return element;
+    }
 }

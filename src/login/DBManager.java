@@ -2,6 +2,7 @@ package login;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.io.*;
 import org.w3c.dom.*;
 
@@ -37,19 +38,13 @@ public class DbManager {
         return conn;
     }
 
-    public Boolean connect(ManagedDb mdb){
+    public Boolean connect(ManagedDb mdb) throws SQLException{
         Integer count = 0;
-        // TODO implement function to handle connection error
-        try{
-            if(count<5){}
-            System.out.println("Attemp "+count+"...");
-            Connection conn = DriverManager.getConnection(mdb.connectorString(), mdb.getUsername(), mdb.getPassword());
-            
-            return false;
-        }
-        catch (Exception e){
-            count++;
-        }
+            // TODO implement function to handle connection error
+
+        if(count<5){}
+        System.out.println("Attemp "+count+"...");
+        Connection conn = DriverManager.getConnection(mdb.connectorString(), mdb.getUsername(), mdb.getPassword());
 
 
         return true;
@@ -94,7 +89,7 @@ public class DbManager {
     }
 
     public void loadHashMap(Document document) {
-
+        
     }
 
     public void setFilePath(String filePath){

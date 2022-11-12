@@ -1,19 +1,24 @@
 package calendar;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 
 
 public class Calendar {
 
     LocalDate refDate;
-
+    HashMap <String, Page> pages = null;
 
     public Calendar(){
         refDate = LocalDate.now();
     }
 
-    public void loadMonth(String month){
-        // TODO - Implement a function to load a Month of events
+    public Calendar(LocalDate refDate){
+        this.refDate = refDate;
+    }
+
+    public void loadPage(String page){
+        pages.put(page, null);
     }
 
     @Override

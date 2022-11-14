@@ -5,9 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.io.*;
 import org.w3c.dom.*;
-
-import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
-
 import util.Xml;
 import java.util.HashMap;
 

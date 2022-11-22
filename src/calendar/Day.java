@@ -1,8 +1,16 @@
 package calendar;
 
+import java.time.LocalDateTime;
+
 public class Day {
 
+    LocalDateTime dtStart;
+    LocalDateTime dtFinish;
+    Entry[] entries;
+
     public Day() {
+
+
     }
         
     @Override

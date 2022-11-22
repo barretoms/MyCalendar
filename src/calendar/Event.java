@@ -4,29 +4,13 @@ import java.time.LocalDateTime;
 
 public class Event extends Entry {
 
-    private LocalDateTime start;
-    private LocalDateTime finish;
     private String description;
 
-
     public Event(String name, LocalDateTime start, LocalDateTime finish){
-        super(name);
-        this.start = start;
-        this.finish = finish;
+        super(name, start, finish);
+        super.setType("Event");
     }
       
-    public void setStart(LocalDateTime start){
-        this.start = start;
-    }
-    public LocalDateTime getStart(){
-        return this.start;
-    }
-    public void setFinish(LocalDateTime finish){
-        this.finish = finish;
-    }
-    public LocalDateTime getFinish(){
-        return this.finish;
-    }
     public void setDescription(String description){
         this.description = description;
     }
@@ -34,5 +18,12 @@ public class Event extends Entry {
         return description;
     }
 
+    public static void main(String[] args) {
+        LocalDateTime start = LocalDateTime.now();
+        LocalDateTime finish = LocalDateTime.now();
+        Entry entry = new Event("abc",start,finish);
+        System.out.println(entry.getClass().getSimpleName()
+        );
+    }
 
 }

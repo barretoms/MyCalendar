@@ -8,6 +8,7 @@ public class Calendar {
 
     LocalDate refDate;
     HashMap <String, Page> pages = null;
+    HashMap <String, Entry> entries = null;
 
     public Calendar(){
         refDate = LocalDate.now();

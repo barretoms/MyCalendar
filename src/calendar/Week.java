@@ -1,13 +1,14 @@
 package calendar;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Week {
 
-    Date refDate;
+    LocalDate firstOfTheWeek;
+    Day[] weekDays = null;
     
-    public Week(Date date) {
-        refDate = date;
+    public Week(LocalDate firstOfTheWeek) {
+        this.firstOfTheWeek = firstOfTheWeek;
     }
 
     @Override

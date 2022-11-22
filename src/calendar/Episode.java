@@ -8,7 +8,7 @@ public class Episode extends Entry{
     String description;
 
     public Episode(String name, LocalDateTime occurrence){
-        super(name);
+        super(name, occurrence, occurrence);
         this.occurrence = occurrence;
     }
 

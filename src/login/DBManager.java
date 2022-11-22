@@ -43,7 +43,6 @@ public class DbManager {
         System.out.println("Attemp "+count+"...");
         Connection conn = DriverManager.getConnection(mdb.connectorString(), mdb.getUsername(), mdb.getPassword());
 
-
         return true;
     }
 

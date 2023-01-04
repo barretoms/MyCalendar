@@ -5,10 +5,8 @@ import java.time.LocalDateTime;
 public interface EntryManager {
     
 
-    
-    public abstract Entry getEvents (LocalDateTime date);
-    public abstract boolean intersects(LocalDateTime start, LocalDateTime finish);
-    public abstract void includeEntry (Entry entry);
+    public void includeEvent(Event event) throws Exception;
+    public abstract Entry getEntries (LocalDateTime date);
 
     // TODO include those
 

@@ -3,6 +3,8 @@ package util;
 import java.util.Properties;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class General {
@@ -59,6 +61,18 @@ public class General {
 
     public static void test(){
         System.out.println(getSha256FromString("Exemple test"));
+    }
+    
+    public static LocalDateTime stringToDateTime(String dt){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime ldt = LocalDateTime.parse(dt, formatter);
+        return ldt;
+    }
+
+    public static String dateTimeToString(LocalDateTime ldt){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String ldtString = ldt.format(formatter);
+        return ldtString;
     }
     
 }

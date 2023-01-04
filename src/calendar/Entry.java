@@ -4,24 +4,31 @@ import java.time.LocalDateTime;
 
 public abstract class Entry {
     
-    private Integer id = null; // if id == null => entry not in database/xml
+    private Integer entryId = null; // if id == null => entry not in database/xml
     private LocalDateTime modificationLocalDateTime;
     private LocalDateTime creationLocalDateTime;
     private LocalDateTime starLocalDateTime;
     private LocalDateTime finishLocalDateTime;
-    private String name;
     private String type;
 
-    public Entry(String name, LocalDateTime dtStart, LocalDateTime dtFinish){
-        this.name = name;
+    public Entry(LocalDateTime dtStart, LocalDateTime dtFinish){
         this.creationLocalDateTime = LocalDateTime.now();
         this.modificationLocalDateTime = this.creationLocalDateTime;
         this.starLocalDateTime = dtStart;
         this.finishLocalDateTime = dtFinish;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Entry(Integer entryId, LocalDateTime dtStart, LocalDateTime dtFinish, LocalDateTime dtModification, LocalDateTime dtCreation, String type){
+        this.entryId = entryId;
+        this.creationLocalDateTime = dtCreation;
+        this.modificationLocalDateTime = dtModification;
+        this.starLocalDateTime = dtStart;
+        this.finishLocalDateTime = dtFinish;
+        this.type = type;
+    }
+
+    public void setEntryId(Integer entryId) {
+        this.entryId = entryId;
     }
 
     public void setModificationLocalDateTime(LocalDateTime modificationLocalDateTime) {
@@ -40,8 +47,8 @@ public abstract class Entry {
         this.finishLocalDateTime = finishLocalDateTime;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getEntryId() {
+        return entryId;
     }
 
     public LocalDateTime getModificationLocalDateTime() {
@@ -60,13 +67,6 @@ public abstract class Entry {
         return finishLocalDateTime;
     }
 
-    public void setName(String name){
-        this.name = name;
-    }
-    public String getName(){
-        return this.name;
-    }
-
     public String getType() {
         return type;
     }
@@ -77,7 +77,10 @@ public abstract class Entry {
 
     @Override
     public String toString(){
-        return "Entry";
+        
+        return "entry_id: "+entryId+
+        "\nCreated -> Modified: "+creationLocalDateTime+"->"+modificationLocalDateTime+
+        "\nEntry Start |-> Entry Finish: "+starLocalDateTime+" |-> "+ finishLocalDateTime;
     }
 
 }

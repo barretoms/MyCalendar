@@ -7,8 +7,9 @@ import java.util.HashMap;
 public class Calendar {
 
     LocalDate refDate;
-    HashMap <String, Page> pages = null;
-    HashMap <String, Entry> entries = null;
+    HashMap <String, Month> pages = null;
+    HashMap <String, Entry> entries = new HashMap<String, Entry>();
+    
 
     public Calendar(){
         refDate = LocalDate.now();
@@ -18,8 +19,15 @@ public class Calendar {
         this.refDate = refDate;
     }
 
-    public void loadPage(String page){
-        pages.put(page, null);
+
+    private void buildDateSlice(LocalDate start, LocalDate finish){
+
+    }
+
+    public void loadMonthPage(int year, int month){
+        Month monthObject = new Month(year, month);
+        monthObject.loadWeaks();
+        pages.put(new String(year+"-"+month), monthObject);
     }
 
     @Override
@@ -31,4 +39,6 @@ public class Calendar {
 
         return str;
     }
+
+
 }

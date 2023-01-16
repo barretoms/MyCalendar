@@ -1,6 +1,5 @@
 package br.com.divagar.calendar;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
@@ -11,10 +10,10 @@ import br.com.divagar.util.General;
 
 public class SqlEntryManager implements EntryManager {
 
-    private Properties properties = new Properties();
+    private Properties properties;
 
     public SqlEntryManager() throws FileNotFoundException, IOException{
-        loadProperties();
+        this.properties = General.loadProperties("config.properties");
     }
 
     @Override
@@ -102,11 +101,6 @@ public class SqlEntryManager implements EntryManager {
         return entries;
     }  
 
-    private void loadProperties() throws FileNotFoundException, IOException{
-        String path = ".\\resources\\config.properties";
-            properties.load(new FileInputStream(path));
-    }
-
     private Connection createConnection() throws SQLException{
         String url = properties.getProperty("connector")+"://"+properties.getProperty("server")+":"
         +properties.getProperty("port")+"/"+properties.getProperty("dbName");
@@ -119,6 +113,8 @@ public class SqlEntryManager implements EntryManager {
 
 
     public static void main (String[] args) throws FileNotFoundException, IOException, SQLException{
+        String currentDir = System.getProperty("user.dir");
+        System.out.println("Current dir using System:" + currentDir);
         SqlEntryManager obj = new SqlEntryManager();
         // Testing getProperty function
         System.out.println(obj.properties.getProperty("connectionType"));

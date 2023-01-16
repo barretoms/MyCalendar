@@ -34,6 +34,10 @@ public class DateSlice {
         }
     }
 
+    public void put(ArrayList<Entry> entries){
+        // TODO Write a function to put an Entry array in the DateSlice
+    }
+
     public static void test() {
         DateSlice ds = new DateSlice(LocalDate.of(2023,1,1), LocalDate.of(2023, 2, 15));
         ds.populate();

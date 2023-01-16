@@ -1,20 +1,33 @@
 package br.com.divagar.calendar;
 
+import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.Properties;
+import br.com.divagar.util.General;
 
 public class Calendar {
 
     LocalDate refDate;
     HashMap <String, Month> pages = null;
     HashMap <String, Entry> entries = new HashMap<String, Entry>();
-    ArrayList<Month> timeSlice = new ArrayList<Month>();
+    DateSlice dateSlice;
+    private EntryManager manager;
+    private static Properties properties;
     
 
     public Calendar(){
         refDate = LocalDate.now();
+        System.out.println("Loading Calendar Properties...");
+        try {
+            properties = General.loadProperties("config.properties");
+        } catch (IOException e) {
+            System.out.println("Failed to load properties file!");
+            e.printStackTrace();
+        }
+        properties.getProperty("null");
+
+        
     }
 
     public Calendar(LocalDate refDate){

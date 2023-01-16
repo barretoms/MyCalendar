@@ -40,7 +40,7 @@ public class Day {
         return month;
     }
 
-    private int calculateWeek(){ // 
+    public int calculateWeek(){ // 
         double dayOfTheMonth = (double)this.dayOfTheMonth;
         LocalDate firstOfTheMonth = LocalDate.of(year, month, 1);
         double weekDayOfTheFirst = (double)(firstOfTheMonth.getDayOfWeek().getValue()%7+1);

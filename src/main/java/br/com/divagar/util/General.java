@@ -1,8 +1,8 @@
 package br.com.divagar.util;
 
 import java.util.Properties;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
@@ -12,13 +12,27 @@ public class General {
     public static void main(String[] args){
 
         test();
+        testLoadProperties();
     }
     
     public static Properties loadProperties (String filePath) throws IOException{
-        FileInputStream proprietiesInputStream = new FileInputStream(filePath);
+        General general = new General();
+        InputStream proprietiesInputStream = general.getFileAsIOStream(filePath);
         Properties properties = new Properties();
         properties.load(proprietiesInputStream);
         return properties;
+    }
+
+    private InputStream getFileAsIOStream(final String fileName) 
+    {
+        InputStream ioStream = this.getClass()
+            .getClassLoader()
+            .getResourceAsStream(fileName);
+        
+        if (ioStream == null) {
+            throw new IllegalArgumentException(fileName + " is not found");
+        }
+        return ioStream;
     }
 
     public static String getRandomAlphaNumericString(Integer length){
@@ -74,5 +88,14 @@ public class General {
         String ldtString = ldt.format(formatter);
         return ldtString;
     }
-    
+    public static void testLoadProperties(){
+        try {
+            Properties prop = loadProperties("config.properties");
+            System.out.println(prop.getProperty("connectionType"));
+        System.out.println(prop.getProperty("dbPassword"));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 }

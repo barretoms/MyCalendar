@@ -1,5 +1,6 @@
 package br.com.divagar.calendar;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -15,19 +16,15 @@ public class Calendar {
     private EntryManager manager;
     private static Properties properties;
     
-
-    public Calendar(){
+    
+    public Calendar() throws FileNotFoundException, IOException{
         refDate = LocalDate.now();
         System.out.println("Loading Calendar Properties...");
-        try {
-            properties = General.loadProperties("config.properties");
-        } catch (IOException e) {
-            System.out.println("Failed to load properties file!");
-            e.printStackTrace();
-        }
-        properties.getProperty("null");
-
-        
+        properties = General.loadProperties("config.properties");
+        switch(properties.getProperty("connectionType")){
+            case "database":
+                manager = new SqlEntryManager();
+        }        
     }
 
     public Calendar(LocalDate refDate){

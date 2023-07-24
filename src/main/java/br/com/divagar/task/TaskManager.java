@@ -6,6 +6,7 @@ public class TaskManager {
     private String username;
     private String password;
     private String configFile = "config.properties";
+    // private taskSelection
 
     public static void main(String[] args){
 

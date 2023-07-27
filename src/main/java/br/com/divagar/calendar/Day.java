@@ -1,4 +1,4 @@
- package br.com.divagar.calendar;
+package br.com.divagar.calendar;
 
 import java.time.LocalDateTime;
 import java.time.LocalDate;

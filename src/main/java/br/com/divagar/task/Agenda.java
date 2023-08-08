@@ -1,18 +1,23 @@
 package br.com.divagar.task;
 
-public class Agenda {
+import java.time.LocalDateTime;
 
+public class Agenda {
+    // * If id = -1 then agenda is not on the database
+    // * if id = -2 then agenda is not up to date
     int id;
     String name;
     String description;
+    LocalDateTime timestamp = null;
     
     public Agenda(){}
 
-    public Agenda( int id, String name, String description){
+    public Agenda( int id, String name, String description, LocalDateTime timestamp){
 
         this.id = id;
         this.name = name;
         this.description = description;
+        this.timestamp = timestamp;
 
     }
 

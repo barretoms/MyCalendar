@@ -4,20 +4,31 @@ public class Objective {
     
     private int id;
     private String name;
+    private String description;
     private int agendaId;
 
 
     public Objective () {}
 
-    public Objective (int id, String name, int agendaId) {
+    public Objective (int id, String name, String description, int agendaId) {
         this.id = id;
         this.name = name;
+        this.description = description;
         this.agendaId = agendaId;
 
     }
 
     public int getId() {
         return id;
+    }
+
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getName() {

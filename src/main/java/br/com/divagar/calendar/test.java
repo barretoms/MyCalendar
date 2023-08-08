@@ -1,8 +1,14 @@
 package br.com.divagar.calendar;
 
+import java.sql.*;
 import java.time.LocalDate;
 
 public class test {
+
+    static String url = "jdbc:mysql://localhost:3306/";
+    static String user = "root";
+    static String password = "";
+
     public static void main (String[] args){
         getWeekOfTheMonth(LocalDate.now());
         System.out.println("-------------");
@@ -17,8 +23,22 @@ public class test {
         getWeekOfTheMonth(LocalDate.of(2023,2,5));
         System.out.println("-------------");
         getWeekOfTheMonth(LocalDate.of(2023,2,4));
+    
+        System.out.println("testeMySql");
+
+        try {
+            testConnection();
+        }
+        catch (Exception e) {
+        System.out.println(e);
+        }
     }
 
+    public static void testConnection () throws Exception{
+
+        Connection con = DriverManager.getConnection(url,user,password);
+
+    }
     public static int getWeekOfTheMonth (LocalDate day){
         double dayOfTheMonth = day.getDayOfMonth();
         double dayOfTheWeek = day.getDayOfWeek().getValue()%7+1;

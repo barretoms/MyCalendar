@@ -1,6 +1,6 @@
 package br.com.divagar.task;
 
-public class TaskManager {
+abstract class TaskManager {
     
     private String database;
     private String username;

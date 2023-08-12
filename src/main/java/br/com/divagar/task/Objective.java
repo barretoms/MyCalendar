@@ -60,7 +60,7 @@ public class Objective {
     }
     
     public static void test() {
-        Objective obj = new Objective(1, "teste", 1);
+        Objective obj = new Objective(1, "teste", "teste decription", 1);
         System.out.println(obj);
 
             }

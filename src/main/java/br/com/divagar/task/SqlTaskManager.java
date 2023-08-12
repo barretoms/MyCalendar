@@ -10,19 +10,25 @@ import br.com.divagar.util.General;
 
 class SqlTaskManager {
 
-    private Properties properties;
+    private String url;
+    private String user;
+    private String password;
+
+
+    
 
     public SqlTaskManager () throws  FileNotFoundException, IOException {
         
-        this.properties = General.loadProperties("config.properties");
+        Properties properties = General.loadProperties("config.properties");
+        this.url = properties.getProperty("connector")+"://"+properties.getProperty("server")+":"
+            +properties.getProperty("port")+"/"+properties.getProperty("dbName");
+        this.user = properties.getProperty("dbUsername");
+        this.password = properties.getProperty("dbPassword");
 
     }
 
     private Connection createConnection() throws SQLException{
-        String url = properties.getProperty("connector")+"://"+properties.getProperty("server")+":"
-        +properties.getProperty("port")+"/"+properties.getProperty("dbName");
-        String user = properties.getProperty("dbUsername");
-        String password = properties.getProperty("dbPassword");
+
         Connection con = DriverManager.getConnection(url, user, password);
 
         return con;

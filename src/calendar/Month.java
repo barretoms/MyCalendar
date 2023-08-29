@@ -1,15 +1,13 @@
 package calendar;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class Month {
 
     LocalDate refDate;
     int year;
     int month;
-    ArrayList<Week> weeks = new ArrayList<Week>();
+    Week[] weeks = new Week[6];
     LocalDate firstOfTheMonth;
     LocalDate lastOfTheMonth;
 
@@ -35,6 +33,11 @@ public class Month {
         return month;
     }
 
+    public void loadWeekOf(Day day){
+        Week week = new Week(day.getYear(), day.getMonth(), day.getWeek());
+        weeks[day.getWeek()-1] = week;
+    }
+
     public void loadWeaks () {
         System.out.println("firstOfTheMonth: "+this.firstOfTheMonth);
         System.out.println("month of the week:"+Week.of(firstOfTheMonth).getMonth());
@@ -42,8 +45,17 @@ public class Month {
         for(Week week = Week.of(firstOfTheMonth); week.getMonth() == this.month; week = week.getNext()){
             week.loadDays();
             // System.out.println(week);
-            weeks.add(week);
+            weeks[week.getWeek()-1] = week;
 
+        }
+    }
+
+    public void addDay(Day day) {
+        int arrayPosition = day.getWeek()-1;
+        if(weeks[arrayPosition] != null) weeks[arrayPosition].LoadDay(day);
+        else {
+            loadWeekOf(day);
+            weeks[arrayPosition].LoadDay(day);
         }
     }
 
@@ -61,7 +73,7 @@ public class Month {
     public String toString() {
         String str = "Year-Month: "+year+"-"+month+"\n";
         for (Week week : weeks) {
-            str += week+"\n";
+            if(week!=null) str += week+"\n";
         }
 
         return str;        
@@ -72,14 +84,20 @@ public class Month {
     }
 
     public static void test(){
-        DateTimeFormatter formater = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        String stringDate = "12/03/1989";
-        LocalDate localDate = LocalDate.parse(stringDate, formater);
-        System.out.println(localDate);
+        // DateTimeFormatter formater = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        // String stringDate = "12/03/1989";
+        // LocalDate localDate = LocalDate.parse(stringDate, formater);
+        // System.out.println(localDate);
         Month test = Month.of(LocalDate.of(2023,1,3));
         test.loadWeaks();
-        System.out.println(test.weeks.size());
+        System.out.println(test.weeks);
         System.out.println(test);
+        Day day28 = new Day(LocalDate.of(2023,1,28));
+        Day day1stOfFeb = new Day(LocalDate.of(2023,2,1));
+        
+        Month test2 = Month.of(LocalDate.of(2023,1,28));
+        test2.addDay(day28);
+        test2.addDay(day1stOfFeb);
 
     }
 }
